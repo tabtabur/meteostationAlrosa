@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" href="image/plane-icons.png" type="image">
+    <meta charset="UTF-8">
+    <title>Вход - Метеостанция Якутии</title>
+    <link rel="stylesheet" href="reg.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Вход в систему</h2>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Пароль" required>
+            </div>
+            
+            <button type="button" onclick="loginUser()">Войти</button>
+        </form>
+        
+        <div class="login-link">
+            <p>Нет аккаунта? <a href="reg.html">Зарегистрироваться</a></p>
+            <p><a href="main.html">← Вернуться на главную</a></p>
+        </div>
+    </div>
+
+    <script>
+        function loginUser() {
+            // Просто переходим на главную страницу
+            window.location.href = 'main.html';
+        }
+    </script>
+</body>
+</html>

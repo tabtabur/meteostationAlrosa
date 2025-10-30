@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <link rel="icon" href="image/plane-icons.png" type="image">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Метеостанция Якутии — АЛРОСА</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_ключ&lang=ru_RU" type="text/javascript"></script>
+  
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown()">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </button>
+        <div id="dropdownMenu" class="dropdown-content">
+            <a href="login.html">Войти</a>
+            <a href="reg.html">Зарегистрироваться</a>
+            <a href="#settings">Настройки</a>
+        </div>
+        <script src="menu.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <i class="fas fa-plane-departure"></i>
+        <h1>Метеостанция Якутии</h1>
+        <i class="fas fa-snowflake"></i>
+      </div>
+      <p>Мониторинг погоды для безопасности полётов и работ на карьерах АЛРОСА</p>
+    </header>
+
+    <main>
+    <!-- Сообщение об успешной регистрации -->
+    <div id="registrationMessage" style="display: none;" class="success-message">
+        <i class="fas fa-check-circle"></i> Регистрация прошла успешно!
+    </div>
+
+    <div class="map-container">
+        <div class="map-overlay">
+            <i class="fas fa-map-marked-alt"></i> Карта метеостанций Якутии
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <div class="update-info">
+        <i class="fas fa-sync-alt"></i> Данные обновляются каждые 30 секунд
+    </div>
+
+    <!-- БЛОКИ С ГОРОДАМИ - они должны быть здесь -->
+    <div class="locations">
+        <div class="location" id="mirny">
+            <h2><i class="fas fa-city"></i> Мирный</h2>
+            <div class="weather-icon" id="mirny-icon">
+                <i class="fas fa-snowflake"></i>
+            </div>
+            <div class="weather-data">
+                <div class="weather-item">
+                    <i class="fas fa-thermometer-half"></i>
+                    <div>Температура</div>
+                    <div class="value temp">-35°C</div>
+                </div>
+                <div class="weather-item">
+                    <i class="fas fa-wind"></i>
+                    <div>Ветер</div>
+                    <div class="value wind">5 м/с</div>
+                </div>
+                <div class="weather-item">
+                    <i class="fas fa-tint"></i>
+                    <div>Влажность</div>
+                    <div class="value hum">73%</div>
+                </div>
+                <div class="weather-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <div>Давление</div>
+                    <div class="value pres">998 гПа</div>
+                </div>
+            </div>
+            <div class="status loading" id="mirny-status">Загрузка данных...</div>
+        </div>
+        
+        <div class="location" id="udachny">
+            <h2><i class="fas fa-mountain"></i> Удачный</h2>
+            <div class="weather-icon" id="udachny-icon">
+                <i class="fas fa-cloud-sun"></i>
+            </div>
+            <div class="weather-data">
+                <div class="weather-item">
+                    <i class="fas fa-thermometer-half"></i>
+                    <div>Температура</div>
+                    <div class="value temp">-11°C</div>
+                </div>
+                <div class="weather-item">
+                    <i class="fas fa-wind"></i>
+                    <div>Ветер</div>
+                    <div class="value wind">5 м/с</div>
+                </div>
+                <div class="weather-item">
+                    <i class="fas fa-tint"></i>
+                    <div>Влажность</div>
+                    <div class="value hum">98%</div>
+                </div>
+                <div class="weather-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <div>Давление</div>
+                    <div class="value pres">998 гПа</div>
+                </div>
+            </div>
+            <div class="status loading" id="udachny-status">Загрузка данных...</div>
+        </div>
+        
+        <div class="location" id="aykhal">
+            <h2><i class="fas fa-gem"></i> Айхал</h2>
+            <div class="weather-icon" id="aykhal-icon">
+                <i class="fas fa-cloud"></i>
+            </div>
+            <div class="weather-data">
+                <div class="weather-item">
+                    <i class="fas fa-thermometer-half"></i>
+                    <div>Температура</div>
+                    <div class="value temp">-11°C</div>
+                </div>
+                <div class="weather-item">
+                    <i class="fas fa-wind"></i>
+                    <div>Ветер</div>
+                    <div class="value wind">5 м/с</div>
+                </div>
+                <div class="weather-item">
+                    <i class="fas fa-tint"></i>
+                    <div>Влажность</div>
+                    <div class="value hum">98%</div>
+                </div>
+                <div class="weather-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <div>Давление</div>
+                    <div class="value pres">998 гПа</div>
+                </div>
+            </div>
+            <div class="status loading" id="aykhal-status">Загрузка данных...</div>
+        </div>
+    </div>
+</main>
+
+    <footer>
+      <p>&copy; 2025 АЛРОСА. Метеостанция Якутии.</p>
+      <div class="team">
+        <span>Designer - Бахтияров Сергей</span>
+        <span>Software - Чухарев Матвей</span>
+        <span>Manager - Луценко Владислав</span>
+      </div>
+      <p>Test Type 01 | Данные: OpenWeatherMap API</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  
+  <script>
+    // Проверяем, была ли регистрация
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const registerButton = document.getElementById('registerButton');
+        const loginButton = document.getElementById('loginButton');
+        const messageDiv = document.getElementById('registrationMessage');
+        
+        if (urlParams.get('registration') === 'success') {
+            // Скрываем кнопку регистрации
+            if (registerButton) {
+                registerButton.style.display = 'none';
+            }
+            
+            // Показываем сообщение об успехе
+            if (messageDiv) {
+                messageDiv.style.display = 'block';
+                
+                // Скрываем сообщение через 5 секунд
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+            
+            // Сохраняем в localStorage, что пользователь зарегистрирован
+            localStorage.setItem('userRegistered', 'true');
+        }
+        
+        // Проверяем localStorage при каждой загрузке
+        if (localStorage.getItem('userRegistered') === 'true' && registerButton) {
+            registerButton.style.display = 'none';
+        }
+    });
+  </script>
+</body>
+</html>
